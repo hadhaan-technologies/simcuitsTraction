@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const Cta = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_laqsb6z", "template_1usgit8", form.current, {
+        publicKey: "zEaCLp6qBX8vtYd2K",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        },
+      );
+    e.target.reset();
+  };
   return (
     <section id="access" className="relative py-32 border-t border-white/5">
       <div className="mx-auto max-w-3xl px-6">
@@ -16,16 +36,15 @@ const Cta = () => {
         </p>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            // (e.target as HTMLFormElement).reset();
-          }}
+          ref={form}
+          onSubmit={sendEmail}
           className="mt-10 flex max-w-md flex-col gap-3 sm:flex-row"
         >
           <input
             type="email"
             required
-            placeholder="you@domain.com"
+            name="email"
+            placeholder="you@gmail.com"
             className="h-11 rounded-md border-white/10 bg-transparent text-foreground placeholder:text-muted-foreground/50 focus-visible:border-primary focus-visible:ring-0"
           />
           <button
