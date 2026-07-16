@@ -29,11 +29,11 @@ const Hero = () => {
               Join early access
             </button>
           </a>
-          <a href="">
+          {/* <a href="">
             <button className="btn-hero h-11 rounded-full px-6 text-[11px] font-mono uppercase tracking-[0.18em]">
               I have a guess
             </button>
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
